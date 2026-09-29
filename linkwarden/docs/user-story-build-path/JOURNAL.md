@@ -1,0 +1,20 @@
+# User Story Build Path Journal
+
+## Story Design Rationale
+
+The stories start with low-risk UI changes because the safest first contributions are local and observable: dashboard empty states, metric components, and modal helper text [apps/web/pages/dashboard.tsx:287-317](../../apps/web/pages/dashboard.tsx#L287), [apps/web/components/DashboardItem.tsx:1-23](../../apps/web/components/DashboardItem.tsx#L1), [apps/web/components/ModalContent/NewLinkModal.tsx:102-180](../../apps/web/components/ModalContent/NewLinkModal.tsx#L102). They then move into existing client state and server state because Linkwarden separates local UI state in Zustand from server state in React Query [apps/web/store/links.ts:12-42](../../apps/web/store/links.ts#L12), [apps/web/store/localSettings.ts:28-123](../../apps/web/store/localSettings.ts#L28), [packages/router/dashboardData.tsx:16-34](../../packages/router/dashboardData.tsx#L16).
+
+The harder stories require API, validation, controller, and Prisma changes because real product ownership in this app means respecting the full path from UI to database and back [packages/lib/schemaValidation.ts:125-179](../../packages/lib/schemaValidation.ts#L125), [apps/web/pages/api/v1/links/index.ts:9-71](../../apps/web/pages/api/v1/links/index.ts#L9), [apps/web/lib/api/controllers/links/postLink.ts:16-166](../../apps/web/lib/api/controllers/links/postLink.ts#L16), [packages/prisma/schema.prisma:166-198](../../packages/prisma/schema.prisma#L166).
+
+## Why Stories Are Ordered This Way
+
+Stories 1-3 teach safe JSX and form edits before touching data flow. Stories 4-5 teach reading existing state and derived dashboard data [apps/web/components/LinkViews/Links.tsx:397-403](../../apps/web/components/LinkViews/Links.tsx#L397), [apps/web/pages/dashboard.tsx:49-93](../../apps/web/pages/dashboard.tsx#L49). Stories 6-7 introduce new server/local state paths without changing the database [apps/web/lib/api/verifyUser.ts:14-72](../../apps/web/lib/api/verifyUser.ts#L14), [apps/web/store/localSettings.ts:46-123](../../apps/web/store/localSettings.ts#L46). Stories 8-9 require schema and business-logic changes around `Link`, `Collection`, and `Tag` [packages/prisma/schema.prisma:126-218](../../packages/prisma/schema.prisma#L126). Story 10 is a capstone because preservation status crosses worker-updated fields, authenticated API design, permission filtering, caching, and performance [packages/prisma/schema.prisma:183-192](../../packages/prisma/schema.prisma#L183), [apps/worker/worker.ts:15-19](../../apps/worker/worker.ts#L15), [apps/web/lib/api/controllers/search/searchLinks.ts:197-213](../../apps/web/lib/api/controllers/search/searchLinks.ts#L197).
+
+## What A Senior Engineer Should Watch
+
+A senior reviewer should check that UI-only stories stay UI-only, state stories use the right state owner, and full-stack stories update every layer of the contract. Specific watchpoints include route auth via `verifyUser`, collection permission through `setCollection`, tag uniqueness by `(name, ownerId)`, and cache invalidation after link mutations [apps/web/lib/api/verifyUser.ts:18-72](../../apps/web/lib/api/verifyUser.ts#L18), [apps/web/lib/api/setCollection.ts:24-38](../../apps/web/lib/api/setCollection.ts#L24), [packages/prisma/schema.prisma:216-217](../../packages/prisma/schema.prisma#L216), [packages/router/links.tsx:543-546](../../packages/router/links.tsx#L543).
+
+## Gaps Noted While Designing Stories
+
+The repo has solid examples of API/unit tests for preserved archive behavior and Playwright login flows, but the inspected files did not show direct tests for link creation permission, optimistic cache behavior, or search parity between Meilisearch and Prisma fallback [apps/web/pages/api/v1/preserved/token.test.ts:50-120](../../apps/web/pages/api/v1/preserved/token.test.ts#L50), [apps/web/e2e/tests/public/login.spec.ts:1-50](../../apps/web/e2e/tests/public/login.spec.ts#L1), [packages/router/links.tsx:426-548](../../packages/router/links.tsx#L426), [apps/web/lib/api/controllers/search/searchLinks.ts:54-255](../../apps/web/lib/api/controllers/search/searchLinks.ts#L54).
+
