@@ -48,6 +48,14 @@ Two claims were corrected during writing after re-verification: (1) the Prisma g
 
 `apps/web/lib/api/archives/resolveAccessibleArchive.test.ts`, `apps/web/lib/api/controllers/migration/importFromHTMLFile.test.ts`, `apps/web/lib/api/preserved/createPreservedFormatUrl.test.ts`, `apps/web/pages/api/v1/archives/[linkId].test.ts`, `apps/web/pages/api/v1/config/index.test.ts`, `apps/web/pages/api/v1/preserved/token.test.ts`, `apps/web/pages/api/v1/preserved/view.test.ts`, `packages/lib/ssrf.test.ts`. E2E: `apps/web/e2e/` with fixtures; CI greps `@login` only.
 
+## 2026-10-06 — accuracy pass against the committed snapshot
+
+Re-checked statically against `elirc/masterlink` (commit `d9d387c`); nothing was installed or run. The environment line above is stale: the tree is now committed in its own repository.
+
+- All 970 relative Markdown links under `fabledocs/` and `docs/` resolve, and every backticked `path:line` citation falls inside its file. The backticked paths that do not exist (`packages/lib/normalizeUrl.ts`, `.github/workflows/unit-tests.yml`, `pages/api/v1/public/collections/rss.ts`, `apps/web/pages/api/v1/links/defaults.ts` and similar) are all files a ticket or review exercise asks you to create.
+- `apps/worker/worker.ts` is 22 lines and starts one awaited migration plus five `while (true)` workers; the "6 loops in 23 lines" wording in the fast track and reading order was corrected.
+- Spot-read and still accurate: the yarn 4.12.0 corepack step at `.github/workflows/playwright-tests.yml:71-75`, the root `package.json` scripts (`concurrently:dev`, `prisma:deploy`, `test` = vitest), `schema.prisma` at 308 lines, and `PostLinkSchema` in `packages/lib/schemaValidation.ts`.
+
 ## Uncertainties / not covered
 
 - **apps/mobile** was not explored beyond its existence; curriculum claims about it are limited to "React Native app sharing `packages/router` hooks" (supported by resolutions in root package.json and router's design).

@@ -30,7 +30,7 @@ No Postgres handy? `docker compose up` uses [docker-compose.yml](../../docker-co
 6. [apps/web/lib/api/getPermission.ts](../../apps/web/lib/api/getPermission.ts) — the authorization primitive.
 7. [packages/router/links.tsx](../../packages/router/links.tsx) — shared React Query hooks; the client's whole data layer.
 8. [apps/web/components/ModalContent/NewLinkModal.tsx](../../apps/web/components/ModalContent/NewLinkModal.tsx) — a representative UI feature using those hooks.
-9. [apps/worker/worker.ts](../../apps/worker/worker.ts) — the worker's 6 background loops in 23 lines.
+9. [apps/worker/worker.ts](../../apps/worker/worker.ts) — the whole worker entry point in 22 lines: one awaited `migrationWorker()`, then five `while (true)` workers (RSS polling, link processing, auto-tagging, indexing, trial-end emails).
 10. [apps/worker/lib/archiveHandler.ts](../../apps/worker/lib/archiveHandler.ts) — the archiving engine; the most interesting file in the repo.
 
 ## 3. Trace two flows (Saturday afternoon)

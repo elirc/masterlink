@@ -31,6 +31,16 @@ Because the same features exist at every layer (UI modal → API route → contr
 - **Senior doing architecture review:** 03/06-architecture-critique → 09/risk-register → 05/05-security-checklist.
 - **Candidate, interview in 2 weeks:** [08-interview-prep/07-two-week-cram-plan.md](08-interview-prep/07-two-week-cram-plan.md), which pulls from everything else.
 
+## Other guides in this repo
+
+`docs/` holds three other AI-written suites on the same codebase. They do not link to this curriculum, so expect overlap:
+
+- `docs/architectural-cartographer/` — a top-down map in five parts (reading map, junior, mid-level, senior, reference). Overlaps most with `01-codebase-cartography` and `03-architecture-and-patterns`.
+- `docs/mission-learning-path/` — 25 Socratic missions (8 junior, 9 mid-level, 7 senior, and a capstone in `04-reference-artifacts.md`). A good second pass after `04-code-reading-gym`.
+- `docs/user-story-build-path/01-stories.md` — 10 feature stories from easy to expert, overlapping with `06-contribution-practice`.
+
+Their code blocks are condensed and annotated rather than verbatim (see the note in each suite's README); the snippets in this curriculum are either real or labeled as fake.
+
 ## Conventions
 
 - **File anchors** look like `apps/web/lib/api/verifyUser.ts:18-23` or as relative links. Line ranges were confirmed against the working tree when written (see [09-reference/verification-log.md](09-reference/verification-log.md)); if the code moves, search for the named symbol.

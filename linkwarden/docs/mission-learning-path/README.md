@@ -8,3 +8,4 @@ How to self-grade: strong answers cite exact files and line ranges, describe own
 
 This suite differs from normal documentation because every mission asks you to do something: trace, annotate, explain, debug, review, or design a safe change. Treat each mission like inspecting a saved link moving through the archive: find the intake form, the catalog record, the permission stamp, and the shelf where the UI displays it.
 
+Code blocks in this suite are condensed and annotated, not verbatim: the code is reformatted, teaching comments were added, and some lines are left out (for example, the `packages/router/links.tsx` imports in Mission 2 have explanatory comment lines inserted between them). Open the cited file and range before quoting it. (Note added 2026-10-06.)

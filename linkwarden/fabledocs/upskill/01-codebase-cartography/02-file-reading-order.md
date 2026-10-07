@@ -17,7 +17,7 @@
 | 9 | `packages/lib/schemaValidation.ts` | scan exports; read `PostLinkSchema:125-148` closely | commented-out blocks |
 | 10 | `packages/router/links.tsx:26-116` | `useLinks`/`useFetchLinks`; note list view actually calls `/api/v1/search` | cache helpers (later) |
 | 11 | `apps/web/components/ModalContent/NewLinkModal.tsx` | representative feature component; client-side zod at `:88-96` | styling |
-| 12 | `apps/worker/worker.ts` | six loops in 23 lines — the whole worker at a glance | — |
+| 12 | `apps/worker/worker.ts` | one migration plus five long-running worker loops in 22 lines — the whole worker at a glance | — |
 | 13 | `apps/worker/workers/linkProcessing.ts` | poll loop, shared browser, `Promise.allSettled:71-72` | log formatting |
 | 14 | `apps/worker/lib/archiveHandler.ts` | the repo's crown jewel; read twice; the `finally:203-230` is the exam | monolith file-content juggling |
 
